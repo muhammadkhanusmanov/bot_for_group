@@ -549,7 +549,7 @@ def check(update:Update,context:CallbackContext):
 
 
 
-updater=Updater('6239971522:AAESEFq1C7p4Q29ric5xqRneNNBqK3OyhHo')
+updater=Updater('Token')
 
 dp=updater.dispatcher
 
