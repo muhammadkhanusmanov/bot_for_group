@@ -1,4 +1,4 @@
-from telegram.ext import CallbackContext
+from telegram.ext import Updater,CommandHandler,CallbackContext,MessageHandler,Filters,CallbackQueryHandler
 from telegram import Update,ReplyKeyboardMarkup,KeyboardButton,InlineKeyboardMarkup,InlineKeyboardButton,ChatAdministratorRights,ChatPermissions
 from db import DB
 import datetime
@@ -420,11 +420,11 @@ def mains(update:Update,context:CallbackContext):
                 name=update.message.from_user.username
                 if name!=None:
                     db.del_activ(user_id)
-                    send_text=f"Kechirasiz faollik vaqtingiz tugadi. @{name} guruhda yozish uchun @clikc_paymentbot orqali to'lov qiling va guruhda yana yoza olasiz."
+                    send_text=f"Kechirasiz faollik vaqtingiz tugadi. @{name} guruhda yozish uchun @matsur_uz_bot orqali to'lov qiling va guruhda yana yoza olasiz."
                     bot.sendMessage(group,send_text)
                 else:
                     name=update.message.from_user.first_name
-                    bot.send_message(group,f"Kechirasiz faollik vaqtingiz tugadi. {name} guruhda yozish uchun @clikc_paymentbot orqali to'lov qiling va guruhda yana yoza olasiz.")
+                    bot.send_message(group,f"Kechirasiz faollik vaqtingiz tugadi. {name} guruhda yozish uchun @matsur_uz_bot orqali to'lov qiling va guruhda yana yoza olasiz.")
                     db.del_activ(user_id)
                 pr=ChatPermissions(can_send_media_messages=False)
                 bot.restrict_chat_member(groups['1'],user_id,permissions=pr,until_date=date)
@@ -437,7 +437,7 @@ def mains(update:Update,context:CallbackContext):
             name=update.message.from_user.username
             bot.delete_message(chat_id=group,message_id=message_iid)
             if name!=None:
-                send_text=f"@{name} guruhda yozish uchun @clikc_paymentbot orqali to'lov qiling va guruhda yana yozaolasiz.\n________\nTo'lov haqida:\n{k}"
+                send_text=f"@{name} guruhda yozish uchun @matsur_uz_bot orqali to'lov qiling va guruhda yana yozaolasiz.\n________\nTo'lov haqida:\n{k}"
                 bot.sendMessage(group,send_text)
                 pr=ChatPermissions(can_send_media_messages=False)
                 bot.restrict_chat_member(groups['1'],user_id,permissions=pr,until_date=date)
@@ -445,7 +445,7 @@ def mains(update:Update,context:CallbackContext):
             else:
                 name=update.message.from_user.first_name
                 pr=ChatPermissions(can_send_media_messages=False)
-                bot.send_message(group,f"{name} guruhda yozish uchun @clikc_paymentbot orqali to'lov qiling va guruhda yana yozaolasiz.\n________\nTo'lov haqida:\n{k}")
+                bot.send_message(group,f"{name} guruhda yozish uchun @matsur_uz_bot orqali to'lov qiling va guruhda yana yozaolasiz.\n________\nTo'lov haqida:\n{k}")
                 bot.restrict_chat_member(groups['1'],user_id,permissions=pr,until_date=date)
                 bot.restrict_chat_member(groups['2'],user_id,permissions=pr,until_date=date)
     db.save()
@@ -588,7 +588,7 @@ def check(update:Update,context:CallbackContext):
 
 
 
-# updater=Updater('6239971522:AAESEFq1C7p4Q29ric5xqRneNNBqK3OyhHo')
+# updater=Updater('Token')
 
 # dp=updater.dispatcher
 
