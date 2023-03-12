@@ -2,7 +2,7 @@ from flask import Flask, request
 import os
 from telegram import Bot, Update
 from telegram.ext import Dispatcher, CommandHandler, MessageHandler, Filters,CallbackQueryHandler
-from main import start,til,tulov,mains,pay,yubor,check,admin,admin_command,up_admin,data
+from main import start,til,tulov,mains,pay,yubor,check,admin,admin_command,up_admin,data as d
 
 
 TOKEN = os.environ["Token"]
@@ -25,7 +25,7 @@ def hello():
         dispacher.add_handler(CommandHandler('start',start))
         dispacher.add_handler(CallbackQueryHandler(til,pattern='til'))
         dispacher.add_handler(MessageHandler((Filters.text('💰Оплата') | Filters.text('💰To\'lov')),tulov))
-        dispacher.add_handler(MessageHandler((Filters.text('📓Информация') | Filters.text('📓Malumot')),data))
+        dispacher.add_handler(MessageHandler((Filters.text('📓Информация') | Filters.text('📓Malumot')),d))
         dispacher.add_handler(MessageHandler((Filters.text('👤Панель администратора') | Filters.text('👤Admin panel')),admin))
         dispacher.add_handler(CallbackQueryHandler(admin_command,pattern='admin'))
         dispacher.add_handler(CallbackQueryHandler(pay,pattern='tas'))
