@@ -16,8 +16,11 @@ class DB:
     def save(self):
         with open(self.db_path, 'w') as f:
             json.dump(self.db, f, indent=4)
-    def add_group(self, group):
-        self.db['admin']['group']=group
+        return None
+    def add_group(self, group1, group2):
+        self.db['admin']['group']["1"]=group1
+        self.db['admin']['group']["2"]=group2
+        return None
     def get_user(self,chat_id):
         return self.db['Users'][str(chat_id)]
     def add_actives(self,chat_id,date):
@@ -25,19 +28,18 @@ class DB:
         return None
     def get_date(self,user_id):
         return self.db['Users'][str(user_id)]['date']
-    def add_date(self,date):
-        self.db['admin']['date']=date
-        return None
     def get_statistic(self):
         return self.db['admin']
-    def add_cost(self,cost):
-        self.db['admin']['cost'] = cost
+    def add_cost(self,a,b,c):
+        self.db['admin']['date']['7'] = a
+        self.db['admin']['date']['15'] = b
+        self.db['admin']['date']['30'] = c
         return None
     def add_cart(self,cart):
         self.db['admin']['cart'] = cart
         return None
     def add_current(self,user_id):
-        if not (user_id in self.db['admin']['current_active']):
+        if not (str(user_id) in self.db['admin']['current_active']):
             self.db['admin']['current_active'].append(str(user_id))
             return None
         return None
@@ -83,6 +85,20 @@ class DB:
     def add_admin(self,admin):
         self.db['admin']['admins'].append(admin)
         return None
-        
-    
+    def add_xabar(self,user_id):
+        self.db['admin']['xabar'][str(user_id)] = True
+        return None
+    def del_xabar(self,user_id):
+        self.db['admin']['xabar'][str(user_id)] = False
+        return None
+    def add_check(self,user_id):
+        if str(user_id) in self.db['admin']['check']:
+            self.db['admin']['check'].append(str(user_id))
+            return None
+        return None
+    def del_check(self,user_id):
+        self.db['admin']['check'].remove(str(user_id))
+        return None
+            
+
     
