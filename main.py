@@ -550,6 +550,7 @@ def check(update:Update,context:CallbackContext):
                 bot.edit_message_text(text=text, message_id=message_id,chat_id=user_id)
                 text="To'lov tasdiqlanmadi. Xatolik uchun admin bilan bog'lanish: @Matsur_34_9"
                 bot.send_message(chat_id=namee,text=str(text))
+                db.del_xabar(namee)
             else:
                 text="To'lov tasdilanib bo'ldi"
                 bot.edit_message_text(text=text, message_id=message_id,chat_id=user_id)
@@ -576,6 +577,7 @@ def check(update:Update,context:CallbackContext):
                 bot.edit_message_text(text=text, message_id=message_id,chat_id=user_id)
                 text="Платеж не подтвержден. Свяжитесь с администратором для ошибки: @Matsur_34_9"
                 bot.send_message(chat_id=namee,text=text)
+                db.del_xabar(namee)
             else:
                 text="Платеж был подтвержден"
                 bot.edit_message_text(text=text, message_id=message_id,chat_id=user_id)
