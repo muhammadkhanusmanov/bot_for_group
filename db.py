@@ -92,7 +92,7 @@ class DB:
         self.db['admin']['xabar'][str(user_id)] = False
         return None
     def add_check(self,user_id):
-        if str(user_id) in self.db['admin']['check']:
+        if not (str(user_id) in self.db['admin']['check']):
             self.db['admin']['check'].append(str(user_id))
             return None
         return None
