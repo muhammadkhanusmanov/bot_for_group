@@ -545,10 +545,14 @@ def check(update:Update,context:CallbackContext):
                 text="To'lov tasdilanib bo'ldi"
                 bot.edit_message_text(text=text, message_id=message_id,chat_id=user_id)
         else:
-            text="✅"
-            bot.edit_message_text(text=text, message_id=message_id,chat_id=user_id)
-            text="To'lov tasdiqlanmadi. Xatolik uchun admin bilan bog'lanish: @Matsur_34_9"
-            bot.send_message(chat_id=namee,text=str(text))
+            if xbr:
+                text="✅"
+                bot.edit_message_text(text=text, message_id=message_id,chat_id=user_id)
+                text="To'lov tasdiqlanmadi. Xatolik uchun admin bilan bog'lanish: @Matsur_34_9"
+                bot.send_message(chat_id=namee,text=str(text))
+            else:
+                text="To'lov tasdilanib bo'ldi"
+                bot.edit_message_text(text=text, message_id=message_id,chat_id=user_id)
     else:
         if data=='7' or data=='15' or data=='30':
             date=str(date+datetime.timedelta(days=float(data)))
@@ -567,10 +571,14 @@ def check(update:Update,context:CallbackContext):
                 text="Платеж был подтвержден"
                 bot.edit_message_text(text=text, message_id=message_id,chat_id=user_id)
         else:
-            text="✅"
-            bot.edit_message_text(text=text, message_id=message_id,chat_id=user_id)
-            text="Платеж не подтвержден. Свяжитесь с администратором для ошибки: @Matsur_34_9"
-            bot.send_message(chat_id=namee,text=text)
+            if xbr:
+                text="✅"
+                bot.edit_message_text(text=text, message_id=message_id,chat_id=user_id)
+                text="Платеж не подтвержден. Свяжитесь с администратором для ошибки: @Matsur_34_9"
+                bot.send_message(chat_id=namee,text=text)
+            else:
+                text="Платеж был подтвержден"
+                bot.edit_message_text(text=text, message_id=message_id,chat_id=user_id)
     db.save()
 
     
