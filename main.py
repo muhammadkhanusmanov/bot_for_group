@@ -10,7 +10,7 @@ def start(update:Update,context:CallbackContext):
     chat_id=update.message.chat_id
     first_name=update.message.from_user.first_name
     text=f'Assalomu Alaykum {first_name}'
-    db=DB('db.json')
+    db=DB('bot_for_group/db.json')
     db.starting(user_id)
     db.save()
     if update.message.chat.type=='private':
@@ -28,7 +28,7 @@ def til(update:Update,context:CallbackContext):
     bot=context.bot
     q,til=query.data.split()
     user_id=query.from_user.id
-    db=DB('db.json')
+    db=DB('bot_for_group/db.json')
     db.add_til(user_id,til)
     user=db.get_user(user_id)
     lang=user['til']
@@ -74,7 +74,7 @@ def tulov(update:Update,context:CallbackContext):
     user_id=update.message.from_user.id
     chat_id=update.message.chat_id
     message_iid=update.message.message_id
-    db=DB('db.json')
+    db=DB('bot_for_group/db.json')
     user=db.get_user(user_id)
     lang=user['til']
     stc=db.get_statistic()
@@ -110,7 +110,7 @@ def pay(update:Update,context:CallbackContext):
     message_id=query.message.message_id
     bot=context.bot
     user_id=query.from_user.id
-    db=DB('db.json')
+    db=DB('bot_for_group/db.json')
     user=db.get_user(user_id)
     lang=user['til']
     db.add_current(user_id)
@@ -127,7 +127,7 @@ def admin(update:Update,context:CallbackContext):
     message_id=update.message.message_id
     bot=context.bot
     user_id=update.message.from_user.id
-    db=DB('db.json')
+    db=DB('bot_for_group/db.json')
     spr_user=db.get_statistic()['superadmins']
     lang=db.get_user(user_id)['til']
     if str(user_id) in spr_user:
@@ -157,7 +157,7 @@ def admin_command(update:Update,context:CallbackContext):
     message_id=query.message.message_id
     bot=context.bot
     user_id=query.from_user.id
-    db=DB('db.json')
+    db=DB('bot_for_group/db.json')
     stc=db.get_statistic()
     lang=db.get_user(user_id)['til']
     q,data=query.data.split()
@@ -213,7 +213,7 @@ def data(update:Update,context:CallbackContext):
     user_id=update.message.from_user.id
     chat_id=update.message.chat_id
     message_iid=update.message.message_id
-    db=DB('db.json')
+    db=DB('bot_for_group/db.json')
     user=db.get_user(user_id)
     lang=user['til']
     stc=db.get_statistic()
@@ -247,7 +247,7 @@ def up_admin(update:Update,context:CallbackContext):
     bot=context.bot
     user_id=query.from_user.id
     q,data=query.data.split()
-    db=DB('db.json')
+    db=DB('bot_for_group/db.json')
     user=db.get_user(user_id)
     lang=user['til']
     stc=db.get_statistic()
@@ -285,7 +285,7 @@ def mains(update:Update,context:CallbackContext):
     user_id=update.message.from_user.id
     chat_id=update.message.chat_id
     message_iid=update.message.message_id
-    db=DB('db.json')
+    db=DB('bot_for_group/db.json')
     stc=db.get_statistic()
     date=str(update.message.date)
     date=datetime.datetime.strptime(date[:-6], "%Y-%m-%d %H:%M:%S")
@@ -462,7 +462,7 @@ def yubor(update:Update,context:CallbackContext):
         name=query.from_user.first_name
     q,data=query.data.split(' ',maxsplit=1)
     data,namee=data.split('/')
-    db=DB('db.json')
+    db=DB('bot_for_group/db.json')
     user=db.get_user(user_id)
     spr=db.get_statistic()
     db.del_check(user_id)
@@ -520,7 +520,7 @@ def check(update:Update,context:CallbackContext):
     date=query.message.date
     q,data=query.data.split()
     data,namee=data.split('/')
-    db=DB('db.json')
+    db=DB('bot_for_group/db.json')
     spr=db.get_statistic()
     groups=spr['group']
     xbr=spr['xabar'][str(namee)]
