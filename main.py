@@ -435,7 +435,10 @@ def mains(update:Update,context:CallbackContext):
         elif (str(user_id) in spr_admin or str(user_id) in admin):
             pass
         else:
-            name=update.message.from_user.username
+            try:
+                name=update.message.from_user.username
+            except:
+                name=update.message.from_user.first_name
             if name!=None:
                 send_text=f"@{name} guruhda yozish uchun @matsur_uz_bot orqali to'lov qiling va guruhda yana yozaolasiz.\n________\nTo'lov haqida:\n{k}"
                 bot.sendMessage(group,send_text)
