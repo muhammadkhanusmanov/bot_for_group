@@ -408,6 +408,7 @@ def mains(update:Update,context:CallbackContext):
         admin=stc['admins']
         actives=stc['actives']
         group='@'+update.message.chat.username
+        print(group)
         groups=stc['group']
         k=''
         for j,i in stc['date'].items():
@@ -435,16 +436,18 @@ def mains(update:Update,context:CallbackContext):
             pass
         else:
             name=update.message.from_user.username
-            bot.delete_message(chat_id=group,message_id=message_iid)
             if name!=None:
                 send_text=f"@{name} guruhda yozish uchun @matsur_uz_bot orqali to'lov qiling va guruhda yana yozaolasiz.\n________\nTo'lov haqida:\n{k}"
                 bot.sendMessage(group,send_text)
+                bot.delete_message(chat_id=group,message_id=message_iid)
                 pr=ChatPermissions(can_send_media_messages=False)
+
                 bot.restrict_chat_member(groups['1'],user_id,permissions=pr,until_date=date)
                 bot.restrict_chat_member(groups['2'],user_id,permissions=pr,until_date=date)
             else:
                 name=update.message.from_user.first_name
                 pr=ChatPermissions(can_send_media_messages=False)
+                bot.delete_message(chat_id=group,message_id=message_iid)
                 bot.send_message(group,f"{name} guruhda yozish uchun @matsur_uz_bot orqali to'lov qiling va guruhda yana yozaolasiz.\n________\nTo'lov haqida:\n{k}")
                 bot.restrict_chat_member(groups['1'],user_id,permissions=pr,until_date=date)
                 bot.restrict_chat_member(groups['2'],user_id,permissions=pr,until_date=date)
@@ -542,7 +545,7 @@ def check(update:Update,context:CallbackContext):
                 bot.restrict_chat_member(groups['2'],namee,permissions=pr,until_date=date)
                 db.del_xabar(namee)
             else:
-                text="To'lov tasdilanib bo'ldi"
+                text="To'lov tasdilanib boldi"
                 bot.edit_message_text(text=text, message_id=message_id,chat_id=user_id)
         else:
             if xbr:
